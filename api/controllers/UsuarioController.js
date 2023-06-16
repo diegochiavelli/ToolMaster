@@ -1,6 +1,23 @@
 const database = require('../models');
+const UsuarioService = require('../services/usuarioService')
+
+const usuarioService = new UsuarioService(); 
 
 class UsuarioController {
+
+    static async cadastrar(req, res){
+        const { nomeUsuario, senha, status } = req.body;
+
+        try {
+            const usuario = await usuarioService.cadastrar({nomeUsuario, senha, status});
+
+            res.status(201).send(usuario);
+        } catch (error) {
+            res.status(400).send({message: error.message});
+        }
+        
+    }
+
     static async todosUsuarios(req, res) {
         try {
             const allUsuarios = await database.Usuarios.findAll();
@@ -20,15 +37,16 @@ class UsuarioController {
         }
     }
 
-    static async criarUsuario(req, res) {
-        const novoUsuario = req.body;
-        try {
-            const novoUsu = await database.Usuarios.create(novoUsuario);
-            return res.status(201).json(novoUsu);
-        } catch (error) {
-            return res.status(500).json(error.message);
-        }
-    }
+    // static async criarUsuario(req, res) {
+    //     const novoUsuario = req.body;
+    //     try {
+    //         const novoUsu = await database.Usuarios.create(novoUsuario);
+    //         return res.status(201).json(novoUsu);
+    //     } catch (error) {
+    //         return res.status(500).json(error.message);
+    //     }
+    // }
+
 
     static async atualizaUsuario(req, res) {
         const { id } = req.params;

@@ -52,6 +52,15 @@ class EmprestimoController {
         }
     }
 
+    static async todosEmprestimosFuncionario(req, res) {
+        const { id } = req.params;
+        try {
+            const allEmprestimosFuncionario = await database.Emprestimos.findAll({ where: { id_funcionario: Number(id) } });
+            return res.status(200).json(allEmprestimosFuncionario);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = EmprestimoController;
