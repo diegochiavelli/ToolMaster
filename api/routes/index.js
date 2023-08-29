@@ -8,5 +8,5 @@ const auth = require('./authRoute');
 
 
 module.exports = app => {
-    app.use(bodyParser.json(), funcionarios, equipamentos, veiculos, usuarios, emprestimos, auth);
+    app.use(bodyParser.json(), auth, funcionarios, equipamentos, veiculos, usuarios, emprestimos);
 }
