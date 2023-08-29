@@ -2,8 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Usuarios = sequelize.define('Usuarios', {
     nomeUsuario: DataTypes.STRING,
-    senha: DataTypes.STRING,
-    status: DataTypes.STRING
+    email: DataTypes.STRING,
+    senha: DataTypes.STRING
   }, { 
       defaultScope:{
         attributes:{

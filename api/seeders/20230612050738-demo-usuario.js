@@ -3,22 +3,22 @@ module.exports = {
 		return queryInterface.bulkInsert('Usuarios', [
 			{
 				nomeUsuario: 'Admin',
-				senha: 'senhafraca',
-				status: 'Administrador',
+				email: 'admin@gmail.com',
+				senha: 'admin',
 				createdAt: new Date(),
 				updatedAt: new Date()
 			},
 			{
-				nomeUsuario: 'Wesley Timido',
-				senha: 'senhaforte',
-				status: 'Almoxarife',
+				nomeUsuario: 'normal',
+				email: 'normal@gmail.com',
+				senha: 'normal',
 				createdAt: new Date(),
 				updatedAt: new Date()
 			},
 			{
-				nomeUsuario: 'copeira',
-				senha: 'querocafe',
-				status: 'Tia',
+				nomeUsuario: 'comum',
+				email: 'comum@gmail.com',
+				senha: 'comum',
 				createdAt: new Date(),
 				updatedAt: new Date()
 			}

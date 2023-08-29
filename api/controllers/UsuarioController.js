@@ -6,10 +6,10 @@ const usuarioService = new UsuarioService();
 class UsuarioController {
 
     static async cadastrar(req, res){
-        const { nomeUsuario, senha, status } = req.body;
+        const { nomeUsuario, email, senha} = req.body;
 
         try {
-            const usuario = await usuarioService.cadastrar({nomeUsuario, senha, status});
+            const usuario = await usuarioService.cadastrar({nomeUsuario, email, senha});
 
             res.status(201).send(usuario);
         } catch (error) {
@@ -36,17 +36,6 @@ class UsuarioController {
             return res.status(500).json(erro.message);
         }
     }
-
-    // static async criarUsuario(req, res) {
-    //     const novoUsuario = req.body;
-    //     try {
-    //         const novoUsu = await database.Usuarios.create(novoUsuario);
-    //         return res.status(201).json(novoUsu);
-    //     } catch (error) {
-    //         return res.status(500).json(error.message);
-    //     }
-    // }
-
 
     static async atualizaUsuario(req, res) {
         const { id } = req.params;
