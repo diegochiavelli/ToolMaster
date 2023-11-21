@@ -14,8 +14,19 @@ class EmprestimoController {
         const { id } = req.params;
         try {
             const umEmp = req.params = await database.Emprestimos.findOne({ where: { id: Number(id) } });
-
+            
             return res.status(200).json(umEmp);
+        } catch (error) {
+            return res.status(500).json(erro.message);
+        }
+    }
+ 
+    static async todosEmprestimoEquipamento(req, res) {
+        const { id } = req.params;
+        try {
+            const umEmpEqui = req.params = await database.EmpEquipamentos.findOne({ where: { id: Number(id) } });
+
+            return res.status(200).json(umEmpEqui);
         } catch (error) {
             return res.status(500).json(erro.message);
         }

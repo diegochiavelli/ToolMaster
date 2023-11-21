@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     Emprestimos.belongsTo(models.Funcionarios, {foreignKey: 'id_funcionario'});
     Emprestimos.belongsToMany(models.Equipamentos, {through: 'EmpEquipamentos', foreignKey: 'id_emprestimo'});
     // Emprestimos.belongsTo(models.Equipamentos, {foreignKey: 'id_equipamento'});
-    // Emprestimos.belongsTo(models.Veiculos, {foreignKey: 'id_veiculo'});
   };
   return Emprestimos;
 };
