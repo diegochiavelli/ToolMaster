@@ -45,6 +45,8 @@ class EquipamentoController {
     static async excluiEquipamento(req, res) {
         const { id } = req.params;
         try {
+            await database.Entradas.destroy({ where: { id_equipamento: Number(id) } });
+            await database.Saidas.destroy({ where: { id_equipamento: Number(id) } });
             await database.Equipamentos.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ mensagem: `O equipamento ${id} foi excluído.` });
         } catch (error) {

@@ -1,15 +1,39 @@
 const database = require('../models');
 const UsuarioService = require('../services/usuarioService')
 
+const { verify, decode } = require('jsonwebtoken');
+const jsonSecret = require('../config/jsonSecret');
+
 const usuarioService = new UsuarioService(); 
 
 class UsuarioController {
 
+    static async usuarioLogado(req, res) {
+        const token = req.headers.authorization; 
+        console.log("Token:", token);
+        if (!token) {
+            return res.status(401).send('Token não informado!');  
+        }
+        const [accessToken] = token.split(" ");
+        
+        
+        try {
+
+            verify(accessToken, jsonSecret.secret);
+            const userLogado = await decode(accessToken);
+
+            return res.status(200).json(userLogado);
+        } catch (error) {
+
+            res.status(401).send('Usuário não autorizado!');
+        }
+    }
+
     static async cadastrar(req, res){
-        const { nomeUsuario, email, senha} = req.body;
+        const { nome, email, senha} = req.body;
 
         try {
-            const usuario = await usuarioService.cadastrar({nomeUsuario, email, senha});
+            const usuario = await usuarioService.cadastrar({nome, email, senha});
 
             res.status(201).send(usuario);
         } catch (error) {

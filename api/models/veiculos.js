@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN
   }, {});
   Veiculos.associate = function(models) {
-    Veiculos.hasMany(models.Emprestimos, {foreignKey: 'id_veiculo'});
+    // Veiculos.hasMany(models.Emprestimos, {foreignKey: 'id_veiculo'});
   };
   return Veiculos;
 };

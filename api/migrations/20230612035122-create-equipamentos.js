@@ -17,26 +17,8 @@ module.exports = {
       modelo: {
         type: Sequelize.STRING
       },
-      valor: {
-        type: Sequelize.FLOAT
-      },
-      dataAquisicao: {
-        type: Sequelize.DATEONLY
-      },
-      garantia: {
-        type: Sequelize.DATEONLY
-      },
-      fornecedor: {
-        type: Sequelize.STRING
-      },
-      depreciacao: {
-        type: Sequelize.FLOAT
-      },
-      dataRevisao: {
-        type: Sequelize.DATEONLY
-      },
-      status: {
-        type: Sequelize.BOOLEAN
+      quantidade: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

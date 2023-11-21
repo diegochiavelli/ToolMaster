@@ -17,14 +17,8 @@ module.exports = {
       telefone: {
         type: Sequelize.STRING
       },
-      assinatura: {
+      cargo: {
         type: Sequelize.STRING
-      },
-      observacao: {
-        type: Sequelize.STRING
-      },
-      status: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +26,10 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
+        allowNull: true,
         type: Sequelize.DATE
       }
     });

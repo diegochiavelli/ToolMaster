@@ -4,9 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     nome: DataTypes.STRING,
     cpf: DataTypes.STRING,
     telefone: DataTypes.STRING,
-    assinatura: DataTypes.STRING,
-    observacao: DataTypes.STRING,
-    status: DataTypes.BOOLEAN
+    cargo: DataTypes.STRING,
   }, {});
   Funcionarios.associate = function(models) {
     Funcionarios.hasMany(models.Emprestimos, {foreignKey: 'id_funcionario'});

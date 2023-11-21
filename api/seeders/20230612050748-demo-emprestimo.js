@@ -2,26 +2,32 @@ module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.bulkInsert('Emprestimos', [
 			{
-				tipoAlocacao: 'Interno',
-				dataSaida: "2022-02-01",
-				dataDevolucao: "2022-02-02",
-				observacao: 'Dia com chuva',
-				assinatura: 'Digital',
+				dataSaida: "2023-03-03",
+				dataDevolucao: "2023-03-03",
+				observacao: 'Concluido',
+				status: 'Concluido',
+				id_usuario: 1,
 				id_funcionario: 1,
-				id_equipamento: 1,
-				id_veiculo: 1,
 				createdAt: new Date(),
 				updatedAt: new Date()
 			},
 			{
-				tipoAlocacao: 'externo',
 				dataSaida: "2022-02-01",
 				dataDevolucao: "2022-02-02",
-				observacao: 'Dia com chuva',
-				assinatura: 'Digital',
+				observacao: 'Obra 2',
+				status: 'Pendente',
+				id_usuario: 1,
 				id_funcionario: 2,
-				id_equipamento: 2,
-				id_veiculo: 2,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				dataSaida: "2022-02-01",
+				dataDevolucao: "2022-02-02",
+				observacao: 'Obra 2',
+				status: 'Atrasado',
+				id_usuario: 1,
+				id_funcionario: 2,
 				createdAt: new Date(),
 				updatedAt: new Date()
 			}

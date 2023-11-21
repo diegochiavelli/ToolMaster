@@ -16,10 +16,9 @@ class UsuarioService {
         try {
             const senhaHash = await hash(dto.senha, 8);
             const novoUsuario = await database.Usuarios.create({
-                nomeUsuario : dto.nomeUsuario,
+                nome: dto.nome,
                 email : dto.email,
                 senha: senhaHash
-        
             });
             return novoUsuario;    
 
