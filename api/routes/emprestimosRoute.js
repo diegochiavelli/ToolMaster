@@ -5,8 +5,7 @@ const router = Router();
 
 router.get('/emprestimos', EmprestimoController.todosEmprestimos);
 router.get('/emprestimos/:id', EmprestimoController.umEmprestimo);
-router.get('/emprestimosequipamentos/:id', EmprestimoController.umEmprestimoEquipamento);
-router.get('/empequipamentos/:id', EmprestimoController.todosEmprestimoEquipamento);
+router.get('/emprestimosequipamentos/:id', EmprestimoController.umEmprestimo);
 router.get('/emprestimos/funcionario/:id', EmprestimoController.todosEmprestimosFuncionario);
 router.post('/emprestimos', EmprestimoController.criarEmprestimo);
 router.post('/emprestimosequipamentos', EmprestimoController.criarEmprestimoEquipamento);

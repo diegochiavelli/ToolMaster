@@ -10,7 +10,6 @@ class UsuarioController {
 
     static async usuarioLogado(req, res) {
         const token = req.headers.authorization; 
-        console.log("Token:", token);
         if (!token) {
             return res.status(401).send('Token não informado!');  
         }

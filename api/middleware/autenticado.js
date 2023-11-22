@@ -4,7 +4,6 @@ const jsonSecret = require('../config/jsonSecret');
 module.exports = async  (req, res, next) => {
     const token = req.headers.authorization; 
     
-    // return next();
     if (!token) {
         return res.status(401).send('Token não informado!');
     }
