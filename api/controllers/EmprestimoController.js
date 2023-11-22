@@ -20,39 +20,45 @@ class EmprestimoController {
 
             const umColaborador = req.params = await database.Funcionarios.findOne({ where: { id: Number(umEmp.id_funcionario) } });
 
+            const equipamentosIds = todosEmpEqui.map(emp => emp.id_equipamento);
+            console.log('equipamentosIdsequipamentosIds',equipamentosIds);
+            const umEquipamento = req.params = await database.Equipamentos.findAll({ where: { id: equipamentosIds } });
+
             const emprestimoTotal = {
                 emprestimo: umEmp,
                 item: todosEmpEqui,
+                equipamento: umEquipamento,
                 colaborador: umColaborador,
             };
-            console.log('emprestimoTotal',emprestimoTotal);
+           
             return res.status(200).json(emprestimoTotal);
         } catch (error) {
             return res.status(500).json(erro.message);
         }
     }
- 
-    // static async todosEmprestimoEquipamento(req, res) {
-    //     const { id } = req.params;
-    //     try {
-    //         const todosEmpEqui = req.params = await database.EmpEquipamentos.findAll({ where: { id_emprestimo: Number(id) } });
+    
+    static async umDoisEmprestimo(req, res) {
+        const { id } = req.params;
+        try {
 
-    //         return res.status(200).json(todosEmpEqui);
-    //     } catch (error) {
-    //         return res.status(500).json(erro.message);
-    //     }
-    // }
+            const umEmp = req.params = await database.Emprestimos.findOne({ where: { id: Number(id) } });
 
-    // static async umEmprestimoEquipamento(req, res) {
-    //     const { id } = req.params;
-    //     try {
-    //         const umEmpEqui = req.params = await database.EmpEquipamentos.findOne({ where: { id: Number(id) } });
+            return res.status(200).json(umEmp);
+        } catch (error) {
+            return res.status(500).json(erro.message);
+        }
+    }
 
-    //         return res.status(200).json(umEmpEqui);
-    //     } catch (error) {
-    //         return res.status(500).json(erro.message);
-    //     }
-    // }
+    static async umEmprestimoEquipamento(req, res) {
+        const { id } = req.params;
+        try {
+            const umEmpEqui = req.params = await database.EmpEquipamentos.findOne({ where: { id_emprestimo: Number(id) } });
+
+            return res.status(200).json(umEmpEqui);
+        } catch (error) {
+            return res.status(500).json(erro.message);
+        }
+    }
     
 
     static async criarEmprestimo(req, res) {
@@ -85,6 +91,19 @@ class EmprestimoController {
                 }
             }
             return res.status(201).json(novoEmp);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async atualizaEmprestimoEquipamento(req, res) {
+        const { id } = req.params;
+        const alteraEmprestimoEquipamento = req.body;
+        try {
+            await database.EmpEquipamentos.update(alteraEmprestimoEquipamento, { where: { id_emprestimo: Number(id) } });
+            const emprestimoEquipamentosAtualizado = await database.EmpEquipamentos.findOne({ where: { id_emprestimo: Number(id) } });
+           
+            return res.status(200).json(emprestimoEquipamentosAtualizado);
         } catch (error) {
             return res.status(500).json(error.message);
         }
