@@ -21,7 +21,7 @@ class EmprestimoController {
             const umColaborador = req.params = await database.Funcionarios.findOne({ where: { id: Number(umEmp.id_funcionario) } });
 
             const equipamentosIds = todosEmpEqui.map(emp => emp.id_equipamento);
-            console.log('equipamentosIdsequipamentosIds',equipamentosIds);
+         
             const umEquipamento = req.params = await database.Equipamentos.findAll({ where: { id: equipamentosIds } });
 
             const emprestimoTotal = {
@@ -39,7 +39,7 @@ class EmprestimoController {
     
     static async umDoisEmprestimo(req, res) {
         const { id } = req.params;
-        try {
+        try { 
 
             const umEmp = req.params = await database.Emprestimos.findOne({ where: { id: Number(id) } });
 

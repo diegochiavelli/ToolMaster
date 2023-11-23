@@ -54,7 +54,18 @@ class EntradaController {
     static async excluiEntrada(req, res) {
         const { id } = req.params;
         try {
-            
+            const umEntradaDelete = await database.Entradas.findOne({ where: { id: Number(id) } });
+
+            const umEquiDelete = await database.Equipamentos.findOne({ where: { id: Number(umEntradaDelete.id_equipamento) } });
+
+            if(umEquiDelete.quantidade < umEntradaDelete.quantidade){
+                return res.status(502).json(error.message);
+            }else{
+                const atualizaQuantidadeDelete = Number(umEquiDelete.quantidade) - Number(umEntradaDelete.quantidade);
+                const alteraEquipamentoDelete = {'quantidade': atualizaQuantidadeDelete};
+                await database.Equipamentos.update(alteraEquipamentoDelete, { where: { id: Number(umEquiDelete.id) } });
+            }
+
             await database.Entradas.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ mensagem: `A entrada ${id} foi excluída.` });
         } catch (error) {

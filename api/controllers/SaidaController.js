@@ -52,7 +52,18 @@ class SaidaController {
 
     static async excluiSaida(req, res) {
         const { id } = req.params;
+
         try {
+            const umSaidaDelete = await database.Saidas.findOne({ where: { id: Number(id) } });
+
+            const umEquiDelete = await database.Equipamentos.findOne({ where: { id: Number(umSaidaDelete.id_equipamento) } });
+
+            const atualizaQuantidadeDelete = Number(umEquiDelete.quantidade) + Number(umSaidaDelete.quantidade);
+            
+            const alteraEquipamentoDelete = {'quantidade': atualizaQuantidadeDelete};
+            
+            await database.Equipamentos.update(alteraEquipamentoDelete, { where: { id: Number(umEquiDelete.id) } });
+
             await database.Saidas.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ mensagem: `A saida ${id} foi excluída.` });
         } catch (error) {
