@@ -26,6 +26,27 @@ class UsuarioService {
             throw new Error('Erro ao cadastrar usuário'); 
         }
     }
+
+    async atualizar(dto) {
+       
+        try {
+
+            const senhaHashAlterada = await hash(dto.senha, 8);
+          
+            const alteraUsuario = {'senha': senhaHashAlterada};
+
+            const novoAlteraUsuario = await database.Usuarios.update(alteraUsuario, { where: { id: dto.id } });
+           
+            return novoAlteraUsuario;    
+
+
+        } catch (error) {
+            throw new Error('Erro ao cadastrar usuário'); 
+        }
+    }
+
+
+
 }
 
 module.exports = UsuarioService;
