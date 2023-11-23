@@ -129,7 +129,6 @@ class EmprestimoController {
             
             const emprestimoVerificaStatus = await database.Emprestimos.findOne({ where: { id: Number(id) } });
            
-
             if(emprestimoVerificaStatus.status != 'Concluído'){
                 await database.Emprestimos.update(alteraEmprestimo, { where: { id: Number(id) } });
                 const emprestimoAtualizado = await database.Emprestimos.findOne({ where: { id: Number(id) } });

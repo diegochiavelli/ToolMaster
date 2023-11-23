@@ -33,7 +33,7 @@ class UsuarioService {
 
             const senhaHashAlterada = await hash(dto.senha, 8);
           
-            const alteraUsuario = {'senha': senhaHashAlterada};
+            const alteraUsuario = {'senha': senhaHashAlterada, 'nome': dto.nome};
 
             const novoAlteraUsuario = await database.Usuarios.update(alteraUsuario, { where: { id: dto.id } });
            
